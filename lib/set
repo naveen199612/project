@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Settings Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SettingsPage(),
+    );
+  }
+}
+
+class SettingsPage extends StatefulWidget {
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool _darkMode = false;
+  double _fontSize = 16.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Settings'),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(16.0),
+        children: [
+          SwitchListTile(
+            title: Text('Dark Mode'),
+            value: _darkMode,
+            onChanged: (value) {
+              setState(() {
+                _darkMode = value;
+              });
+            },
+          ),
+          Slider(
+            value: _fontSize,
+            min: 12.0,
+            max: 24.0,
+            onChanged: (value) {
+              setState(() {
+                _fontSize = value;
+              });
+            },
+            label: 'Font Size',
+            divisions: 12,
+          ),
+        ],
+      ),
+    );
+  }
+}
